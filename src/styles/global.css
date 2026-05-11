@@ -683,12 +683,22 @@ button { font-family: inherit; cursor: pointer; }
   .nb-about-split { gap: 32px; }
   .nb-value-card { padding: 16px; gap: 14px; }
   .nb-stats-grid { grid-template-columns: 1fr; gap: 12px; }
+  .nb-stats-grid > div {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
   .nb-stat-card { padding: 24px 20px; }
   .nb-stat-val { font-size: 2.25rem; }
   .nb-stat-label { font-size: .88rem; }
   .nb-stat-sub { font-size: .78rem; }
   .nb-vals-grid { grid-template-columns: 1fr; }
   .nb-ts-stats { grid-template-columns: 1fr 1fr; }
+  .nb-ts-stats-wrap > div {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
   .nb-cs-featured { height: 400px; }
   .nb-cs-body-featured { max-width: 100%; }
   .nb-cs-body-wrap { padding: 20px; }

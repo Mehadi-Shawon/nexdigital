@@ -468,6 +468,7 @@ function TechStack() {
       </div>
 
       <div className="nb-container" style={{position:'relative',zIndex:2,marginTop:56}}>
+        <div className="nb-ts-stats-wrap">
         <Reveal>
           <div className="nb-ts-stats">
             {[
@@ -483,6 +484,7 @@ function TechStack() {
             ))}
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   )

@@ -405,11 +405,11 @@ export default function Contact() {
                 <div className="nb-booking-host">
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80&crop=faces"
-                    alt="Mehad Hossain"
+                    alt="Md. Niamul Islam Tanay"
                     className="nb-booking-host-img"
                   />
                   <div>
-                    <p className="nb-booking-host-name">Mehad Hossain</p>
+                    <p className="nb-booking-host-name">Md. Niamul Islam Tanay</p>
                     <p className="nb-booking-host-role">Founder, NexbeeLabs</p>
                   </div>
                 </div>
