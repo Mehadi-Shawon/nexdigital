@@ -165,7 +165,6 @@ const caseStudies = [
 ]
 
 function FeaturedProjects() {
-  const [main, ...rest] = caseStudies
   return (
     <section className="nb-section" id="portfolio">
       <div className="nb-container">
@@ -177,59 +176,34 @@ function FeaturedProjects() {
           </div>
         </Reveal>
 
-        <div className="nb-cs-grid">
-          {/* Large card */}
-          <Reveal>
-            <div className="nb-cs-card nb-cs-featured">
-              <div className="nb-cs-img-wrap">
-                <img src={main.image} alt={main.client} className="nb-cs-img"/>
-                <div className="nb-cs-overlay" style={{background:'linear-gradient(to right,rgba(4,4,14,.96) 40%,rgba(4,4,14,.3) 100%)'}}/>
-              </div>
-              <div className="nb-cs-body-wrap nb-cs-body-featured">
-                <span className="nb-cs-cat" style={{color:main.accent}}>{main.category}</span>
-                <h3 className="nb-cs-client">{main.client}</h3>
-                <p className="nb-cs-headline">{main.headline}</p>
-                <p className="nb-cs-desc">{main.body}</p>
-                <div className="nb-cs-metric">
-                  <span className="nb-cs-metric-v" style={{color:main.accent}}>{main.metric}</span>
-                  <span className="nb-cs-metric-l">{main.metricLabel}</span>
+        <div className="nb-fw-list">
+          {caseStudies.map((p, i) => (
+            <Reveal key={p.id} delay={`${i * 0.08}s`}>
+              <div className={`nb-fw-item ${i % 2 === 1 ? 'nb-fw-rev' : ''}`}>
+                {/* Image */}
+                <div className="nb-fw-img-side">
+                  <img src={p.image} alt={p.client} className="nb-fw-img"/>
+                  <div className="nb-fw-img-overlay"/>
+                  <span className="nb-fw-num">{String(i+1).padStart(2,'0')}</span>
                 </div>
-                <div className="nb-cs-tags">
-                  {main.tags.map(t => <span key={t} className="nb-cs-tag">{t}</span>)}
-                </div>
-              </div>
-              <div className="nb-cs-accent-line" style={{background:main.accent}}/>
-            </div>
-          </Reveal>
-
-          {/* Stack of smaller cards */}
-          <div className="nb-cs-stack">
-            {rest.map((p, i) => (
-              <Reveal key={p.id} delay={`${(i + 1) * 0.1}s`}>
-                <div className="nb-cs-card nb-cs-small">
-                  <div className="nb-cs-img-wrap">
-                    <img src={p.image} alt={p.client} className="nb-cs-img"/>
-                    <div className="nb-cs-overlay" style={{background:'linear-gradient(to top,rgba(4,4,14,.97) 35%,rgba(4,4,14,.25) 100%)'}}/>
+                {/* Text */}
+                <div className="nb-fw-text-side">
+                  <span className="nb-fw-cat" style={{color:p.accent}}>{p.category}</span>
+                  <h3 className="nb-fw-client">{p.client}</h3>
+                  <p className="nb-fw-headline">{p.headline}</p>
+                  {i === 0 && <p className="nb-fw-body">{p.body}</p>}
+                  <div className="nb-fw-metric">
+                    <span className="nb-fw-metric-v" style={{color:p.accent}}>{p.metric}</span>
+                    <span className="nb-fw-metric-l">{p.metricLabel}</span>
                   </div>
-                  <div className="nb-cs-body-wrap">
-                    <span className="nb-cs-cat" style={{color:p.accent}}>{p.category}</span>
-                    <h3 className="nb-cs-client nb-cs-client-sm">{p.client}</h3>
-                    <p className="nb-cs-headline nb-cs-headline-sm">{p.headline}</p>
-                    <div className="nb-cs-foot">
-                      <div className="nb-cs-metric">
-                        <span className="nb-cs-metric-v nb-cs-metric-sm" style={{color:p.accent}}>{p.metric}</span>
-                        <span className="nb-cs-metric-l">{p.metricLabel}</span>
-                      </div>
-                      <div className="nb-cs-tags">
-                        {p.tags.map(t => <span key={t} className="nb-cs-tag">{t}</span>)}
-                      </div>
-                    </div>
+                  <div className="nb-fw-tags">
+                    {p.tags.map(t => <span key={t} className="nb-fw-tag">{t}</span>)}
                   </div>
-                  <div className="nb-cs-accent-line" style={{background:p.accent}}/>
+                  <div className="nb-fw-bar" style={{background:p.accent}}/>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
         <Reveal>
@@ -387,104 +361,93 @@ function Process() {
 }
 
 /* ─── Tech Stack ────────────────────────────────────────────────────────── */
-const techRows = [
-  [
-    { name: 'Figma',         slug: 'figma',            hex: 'F24E1E' },
-    { name: 'Photoshop',     slug: 'adobephotoshop',   hex: '31A8FF' },
-    { name: 'Premiere Pro',  slug: 'adobepremierepro', hex: '9999FF' },
-    { name: 'Framer',        slug: 'framer',           hex: '0055FF' },
-    { name: 'Sketch',        slug: 'sketch',           hex: 'F7B500' },
-    { name: 'Webflow',       slug: 'webflow',          hex: '4353FF' },
-    { name: 'Shopify',       slug: 'shopify',          hex: '7AB55C' },
-    { name: 'WordPress',     slug: 'wordpress',        hex: '21759B' },
-    { name: 'Sanity',        slug: 'sanity',           hex: 'F36458' },
-  ],
-  [
-    { name: 'React',         slug: 'react',            hex: '61DAFB' },
-    { name: 'Next.js',       slug: 'nextdotjs',        hex: 'ffffff' },
-    { name: 'Node.js',       slug: 'nodedotjs',        hex: '5FA04E' },
-    { name: 'Laravel',       slug: 'laravel',          hex: 'FF2D20' },
-    { name: 'AWS',           slug: 'amazonaws',        hex: 'FF9900' },
-    { name: 'Flutter',       slug: 'flutter',          hex: '02569B' },
-    { name: 'AI Tools',      slug: 'openai',           hex: 'ffffff' },
-    { name: 'Docker',        slug: 'docker',           hex: '2496ED' },
-    { name: 'Kubernetes',    slug: 'kubernetes',       hex: '326CE5' },
-  ],
-  [
-    { name: 'TypeScript',    slug: 'typescript',       hex: '3178C6' },
-    { name: 'PostgreSQL',    slug: 'postgresql',       hex: '4169E1' },
-    { name: 'Tailwind CSS',  slug: 'tailwindcss',      hex: '06B6D4' },
-    { name: 'WooCommerce',   slug: 'woocommerce',      hex: '7F54B3' },
-    { name: 'Google Ads',    slug: 'googleads',        hex: '4285F4' },
-    { name: 'HubSpot',       slug: 'hubspot',          hex: 'FF7A59' },
-    { name: 'Analytics',     slug: 'googleanalytics',  hex: 'E37400' },
-    { name: 'Semrush',       slug: 'semrush',          hex: 'FF642D' },
-    { name: 'Notion',        slug: 'notion',           hex: 'ffffff' },
-  ],
+const techCategories = [
+  {
+    label: 'Design', color: '#00f0ff', Icon: PenTool,
+    tools: [
+      { name: 'Figma',        slug: 'figma',           hex: 'F24E1E' },
+      { name: 'Photoshop',    slug: 'adobephotoshop',  hex: '31A8FF' },
+      { name: 'Premiere Pro', slug: 'adobepremierepro',hex: '9999FF' },
+      { name: 'Framer',       slug: 'framer',          hex: '0055FF' },
+      { name: 'Sketch',       slug: 'sketch',          hex: 'F7B500' },
+      { name: 'Webflow',      slug: 'webflow',         hex: '4353FF' },
+    ],
+  },
+  {
+    label: 'Development', color: '#7928ca', Icon: Code2,
+    tools: [
+      { name: 'React',        slug: 'react',           hex: '61DAFB' },
+      { name: 'Next.js',      slug: 'nextdotjs',       hex: 'ffffff' },
+      { name: 'Node.js',      slug: 'nodedotjs',       hex: '5FA04E' },
+      { name: 'Laravel',      slug: 'laravel',         hex: 'FF2D20' },
+      { name: 'AWS',          slug: 'amazonaws',       hex: 'FF9900' },
+      { name: 'Flutter',      slug: 'flutter',         hex: '02569B' },
+      { name: 'AI Tools',     slug: 'openai',          hex: 'ffffff' },
+      { name: 'Docker',       slug: 'docker',          hex: '2496ED' },
+      { name: 'Kubernetes',   slug: 'kubernetes',      hex: '326CE5' },
+    ],
+  },
+  {
+    label: 'Platforms', color: '#ff0080', Icon: Globe,
+    tools: [
+      { name: 'Shopify',      slug: 'shopify',         hex: '7AB55C' },
+      { name: 'WordPress',    slug: 'wordpress',       hex: '21759B' },
+      { name: 'WooCommerce',  slug: 'woocommerce',     hex: '7F54B3' },
+      { name: 'Sanity',       slug: 'sanity',          hex: 'F36458' },
+      { name: 'Tailwind CSS', slug: 'tailwindcss',     hex: '06B6D4' },
+      { name: 'PostgreSQL',   slug: 'postgresql',      hex: '4169E1' },
+    ],
+  },
+  {
+    label: 'Marketing', color: '#ffb86c', Icon: TrendingUp,
+    tools: [
+      { name: 'Google Ads',   slug: 'googleads',       hex: '4285F4' },
+      { name: 'HubSpot',      slug: 'hubspot',         hex: 'FF7A59' },
+      { name: 'Analytics',    slug: 'googleanalytics', hex: 'E37400' },
+      { name: 'Search Con.',  slug: 'googlesearchconsole', hex: '458CF5' },
+      { name: 'Semrush',      slug: 'semrush',         hex: 'FF642D' },
+      { name: 'Notion',       slug: 'notion',          hex: 'ffffff' },
+    ],
+  },
 ]
-
-const speeds = ['32s', '24s', '38s']
 
 function TechStack() {
   return (
     <section className="nb-ts-section">
-
       <div className="nb-container" style={{position:'relative',zIndex:2}}>
+
         <Reveal>
           <div className="nb-section-head">
             <Badge>Tech Stack</Badge>
             <h2 className="nb-h2">Built with the tools <span className="nb-grad">your business needs</span></h2>
-            <p className="nb-section-sub">From design to deployment — we work across the full stack.</p>
+            <p className="nb-section-sub">From design to deployment — we master the full stack.</p>
           </div>
         </Reveal>
-      </div>
 
-      <div className="nb-ts-rows">
-        {techRows.map((row, i) => (
-          <div key={i} className="nb-ts-row-mask">
-            <div
-              className="nb-ts-track"
-              style={{
-                animationDuration: speeds[i],
-                animationDirection: i % 2 === 1 ? 'reverse' : 'normal',
-              }}
-            >
-              {[...row, ...row].map((t, j) => (
-                <div key={j} className="nb-ts-pill">
-                  <div className="nb-ts-logo-ring">
-                    <img
-                      src={`https://cdn.simpleicons.org/${t.slug}/${t.hex}`}
-                      alt={t.name}
-                      className="nb-ts-logo"
-                      loading="lazy"
-                    />
+        <div className="nb-ts-cats">
+          {techCategories.map((cat, i) => (
+            <Reveal key={cat.label} delay={`${i * 0.08}s`}>
+              <div className="nb-ts-cat">
+                <div className="nb-ts-cat-hd">
+                  <div className="nb-ts-cat-ic" style={{color:cat.color,background:`${cat.color}15`,border:`1px solid ${cat.color}30`}}>
+                    <cat.Icon size={14}/>
                   </div>
-                  <span className="nb-ts-name">{t.name}</span>
+                  <span className="nb-ts-cat-lbl" style={{color:cat.color}}>{cat.label}</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="nb-container" style={{position:'relative',zIndex:2,marginTop:56}}>
-        <div className="nb-ts-stats-wrap">
-        <Reveal>
-          <div className="nb-ts-stats">
-            {[
-              { v:'20+',  l:'Technologies' },
-              { v:'4',    l:'Specialisations' },
-              { v:'120+', l:'Projects shipped' },
-              { v:'6yr',  l:'Combined expertise' },
-            ].map(s => (
-              <div key={s.l} className="nb-ts-stat">
-                <span className="nb-ts-stat-v nb-grad">{s.v}</span>
-                <span className="nb-ts-stat-l">{s.l}</span>
+                <div className="nb-ts-pills">
+                  {cat.tools.map(t => (
+                    <div key={t.name} className="nb-ts-pill">
+                      <img src={`https://cdn.simpleicons.org/${t.slug}/${t.hex}`} alt={t.name} loading="lazy" width="16" height="16"/>
+                      <span>{t.name}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-          </div>
-        </Reveal>
+            </Reveal>
+          ))}
         </div>
+
+
       </div>
     </section>
   )
