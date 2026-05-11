@@ -1,9 +1,8 @@
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, ArrowRight } from 'lucide-react'
 import Badge from '../components/Badge'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { Reveal, StaggerReveal } from '../hooks/useInView'
-import { ArrowRight } from 'lucide-react'
 
 const projects = [
   { id:1, category:'Web Design',    title:'NexaStore',       sub:'E-commerce platform',  desc:'Full Shopify redesign for a fashion retailer. Conversion-focused product pages and a brand refresh that increased sales by 38%.', tags:['Shopify','Brand','CRO'],         metric:'+38%',  metricLabel:'Conversion rate', accent:'#00f0ff', grad:'linear-gradient(135deg,rgba(0,112,243,.3),rgba(0,240,255,.1))', year:'2024', mockType:'ecom' },
@@ -71,6 +70,12 @@ function PageHero() {
         <Reveal><Badge>Our Work</Badge></Reveal>
         <Reveal delay="0.1s"><h1 className="nb-page-h1">Projects we're <span className="nb-grad">proud of</span></h1></Reveal>
         <Reveal delay="0.2s"><p className="nb-page-sub">A selection of recent work. Every project was built from scratch, delivered on time, and made a measurable difference.</p></Reveal>
+        <Reveal delay="0.3s">
+          <div style={{display:'flex',gap:16,flexWrap:'wrap',marginTop:36}}>
+            <NavLink to="/contact"  className="nb-btn nb-btn-grad">Start a project <ArrowRight size={16}/></NavLink>
+            <NavLink to="/services" className="nb-btn nb-btn-ghost">Our services</NavLink>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

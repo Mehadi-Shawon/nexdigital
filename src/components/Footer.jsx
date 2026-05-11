@@ -4,7 +4,11 @@ import { NavLink } from 'react-router-dom'
 export default function Footer() {
   return (
     <footer className="nb-footer">
-      <div className="nb-container">
+      <div className="nb-footer-orb nb-footer-orb-1"/>
+      <div className="nb-footer-orb nb-footer-orb-2"/>
+      <div className="nb-footer-orb nb-footer-orb-3"/>
+      <div className="nb-footer-wordmark" aria-hidden="true">NEXBEE</div>
+      <div className="nb-container" style={{position:'relative',zIndex:2}}>
         <div className="nb-footer-top">
           <div className="nb-footer-brand">
             <NavLink to="/" className="nb-logo nb-footer-logo"><span className="nb-grad">Nexbee</span>Labs</NavLink>
@@ -45,7 +49,7 @@ export default function Footer() {
         </div>
         <div className="nb-footer-bot">
           <p>© 2025 NexbeeLabs. All rights reserved.</p>
-          <div><a href="#">Privacy</a> · <a href="#">Terms</a></div>
+          <div><NavLink to="/privacy">Privacy Policy</NavLink> · <NavLink to="/terms">Terms of Service</NavLink></div>
         </div>
       </div>
     </footer>

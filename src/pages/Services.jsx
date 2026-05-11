@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, Globe, PenTool, Layers, TrendingUp, MessageCircle, ShoppingBag, CheckCircle, ChevronRight, Zap, DollarSign, HeartHandshake, Search, MessageSquare, Phone, CreditCard, LifeBuoy, Plus, Minus } from 'lucide-react'
+import { ArrowRight, Globe, PenTool, Layers, TrendingUp, MessageCircle, ShoppingBag, CheckCircle, ChevronRight, Zap, DollarSign, HeartHandshake, Search, MessageSquare, Phone, CreditCard, LifeBuoy, ChevronDown } from 'lucide-react'
 import Badge from '../components/Badge'
 import { Reveal, StaggerReveal } from '../hooks/useInView'
 import { NavLink } from 'react-router-dom'
@@ -81,8 +81,12 @@ function PageHero() {
       <div className="nb-orb nb-orb-purple" style={{width:400,height:400,bottom:-100,right:-100,zIndex:2}}/>
       <div className="nb-container" style={{position:'relative',zIndex:10}}>
         <Badge>What We Do</Badge>
-        <h1 className="nb-page-h1">Services built for <span className="nb-grad">real results</span></h1>
+        <h1 className="nb-page-h1" style={{whiteSpace:'nowrap'}}>Services built for <span className="nb-grad">real results</span></h1>
         <p className="nb-page-sub">Everything your digital presence needs — from the first sketch to ongoing growth. Priced transparently, delivered properly.</p>
+        <div style={{display:'flex',gap:16,flexWrap:'wrap',marginTop:36}}>
+          <NavLink to="/contact" className="nb-btn nb-btn-grad">Start a project <ArrowRight size={16}/></NavLink>
+          <NavLink to="/portfolio" className="nb-btn nb-btn-ghost">See our work</NavLink>
+        </div>
       </div>
     </section>
   )
@@ -239,29 +243,47 @@ const faqs = [
 ]
 
 function FAQ() {
-  const [open, setOpen] = useState(null)
+  const [open, setOpen] = useState(0)
   return (
-    <section style={{padding:'0 0 80px'}}>
-      <div className="nb-container" style={{maxWidth:760,margin:'0 auto'}}>
-        <Reveal>
-          <div className="nb-section-head" style={{marginBottom:40}}>
-            <Badge>FAQ</Badge>
-            <h2 className="nb-h2">Questions we <span className="nb-grad">hear often</span></h2>
-          </div>
-        </Reveal>
-        <Reveal>
-          <div className="nb-faq-list">
-            {faqs.map((f, i) => (
-              <div key={i} className={`nb-faq-item ${open === i ? 'nb-faq-open' : ''}`}>
-                <button className="nb-faq-q" onClick={() => setOpen(open === i ? null : i)}>
-                  <span>{f.q}</span>
-                  {open === i ? <Minus size={16}/> : <Plus size={16}/>}
-                </button>
-                {open === i && <p className="nb-faq-a">{f.a}</p>}
-              </div>
-            ))}
-          </div>
-        </Reveal>
+    <section className="nb-pfaq-section">
+      <div className="nb-container">
+        <div className="nb-pfaq-layout">
+
+          {/* Left — sticky panel */}
+          <Reveal>
+            <div className="nb-pfaq-left">
+              <Badge>FAQ</Badge>
+              <h2 className="nb-h2" style={{marginTop:16}}>
+                Questions we <span className="nb-grad">hear often</span>
+              </h2>
+              <p className="nb-pfaq-desc">
+                Still have questions? We're happy to walk you through anything before you commit to a single thing.
+              </p>
+              <NavLink to="/contact" className="nb-btn nb-btn-grad" style={{marginTop:8,display:'inline-flex'}}>
+                Ask a question <ArrowRight size={16}/>
+              </NavLink>
+            </div>
+          </Reveal>
+
+          {/* Right — accordion */}
+          <Reveal delay="0.12s">
+            <div className="nb-pfaq-list">
+              {faqs.map((f, i) => (
+                <div key={i} className={`nb-pfaq-item ${open === i ? 'nb-pfaq-item-open' : ''}`}>
+                  <button className="nb-pfaq-trigger" onClick={() => setOpen(open === i ? null : i)}>
+                    <span className="nb-pfaq-num" style={{color: open === i ? '#00f0ff' : undefined}}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="nb-pfaq-q">{f.q}</span>
+                    <ChevronDown size={18} className="nb-pfaq-chevron"/>
+                  </button>
+                  {open === i && <p className="nb-pfaq-a">{f.a}</p>}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+        </div>
       </div>
     </section>
   )

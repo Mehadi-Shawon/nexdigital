@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowUpRight, Mail, Clock, Globe, Send, Linkedin, Instagram, Facebook, Dribbble, CheckCircle, Sparkles, Star } from 'lucide-react'
+import { ArrowUpRight, Mail, Clock, Globe, Send, Linkedin, Instagram, Facebook, Dribbble, CheckCircle, Sparkles, Star, User, Building2 } from 'lucide-react'
 import Badge from '../components/Badge'
 import { NavLink } from 'react-router-dom'
 import { Reveal } from '../hooks/useInView'
@@ -15,14 +15,6 @@ const services = [
   'Social Media Management',
   'E-Commerce Solutions',
   'Not sure yet — let\'s talk',
-]
-
-const budgets = [
-  { label: 'Under $500',      v: 'under-500' },
-  { label: '$500 – $1K',      v: '500-1k' },
-  { label: '$1K – $3K',       v: '1k-3k' },
-  { label: '$3K – $5K',       v: '3k-5k' },
-  { label: '$5K+',            v: '5k-plus' },
 ]
 
 const testimonials = [
@@ -55,7 +47,6 @@ function TrustSignals() {
   const row2 = [...stats, ...stats, ...stats, ...stats]
   return (
     <section className="nb-trust-section">
-      {/* Row 1 — testimonials scrolling left */}
       <div className="nb-trust-track-wrap">
         <div className="nb-trust-track">
           {row1.map((t, i) => (
@@ -70,7 +61,6 @@ function TrustSignals() {
           ))}
         </div>
       </div>
-      {/* Row 2 — stats scrolling right */}
       <div className="nb-trust-track-wrap" style={{marginTop:12}}>
         <div className="nb-trust-track nb-trust-track-reverse">
           {row2.map((s, i) => (
@@ -119,9 +109,7 @@ function BudgetEstimator() {
         </Reveal>
         <Reveal delay="0.1s">
           <div className="nb-estimator-card">
-            {/* Sliders */}
             <div className="nb-estimator-sliders">
-
               <div className="nb-estimator-group">
                 <div className="nb-estimator-row">
                   <label className="nb-estimator-label">Timeline</label>
@@ -136,7 +124,6 @@ function BudgetEstimator() {
                   <span>1 wk</span><span>4 wks</span><span>8 wks</span><span>12 wks</span>
                 </div>
               </div>
-
               <div className="nb-estimator-group">
                 <div className="nb-estimator-row">
                   <label className="nb-estimator-label">Project Complexity</label>
@@ -151,7 +138,6 @@ function BudgetEstimator() {
                   {complexityOptions.map(o => <span key={o}>{o}</span>)}
                 </div>
               </div>
-
               <div className="nb-estimator-group">
                 <div className="nb-estimator-row">
                   <label className="nb-estimator-label">Team Size</label>
@@ -166,10 +152,7 @@ function BudgetEstimator() {
                   {teamOptions.map(o => <span key={o}>{o}</span>)}
                 </div>
               </div>
-
             </div>
-
-            {/* Result panel */}
             <div className="nb-estimator-result">
               <p className="nb-estimator-result-label">Estimated Investment</p>
               <div className="nb-estimator-price">
@@ -192,7 +175,6 @@ function BudgetEstimator() {
                 Get an exact quote <ArrowUpRight size={15}/>
               </NavLink>
             </div>
-
           </div>
         </Reveal>
       </div>
@@ -201,11 +183,10 @@ function BudgetEstimator() {
 }
 
 export default function Contact() {
-  const [form, setForm] = useState({ name:'', email:'', company:'', service:'', budget:'', message:'' })
-  const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const [form, setForm] = useState({ name:'', email:'', company:'', service:'', message:'' })
+  const [status, setStatus] = useState('idle')
 
   const handle = e => setForm({ ...form, [e.target.name]: e.target.value })
-  const setBudget = v => setForm({ ...form, budget: v })
 
   const submit = async (e) => {
     e.preventDefault()
@@ -244,34 +225,43 @@ export default function Contact() {
           <Reveal delay="0.2s">
             <p className="nb-page-sub">Tell us about your project. We read every message personally and respond within 24 hours — usually faster.</p>
           </Reveal>
+          <Reveal delay="0.3s">
+            <div style={{display:'flex',gap:16,flexWrap:'wrap',marginTop:36}}>
+              <a href="#contact-form" className="nb-btn nb-btn-grad">Send a message <ArrowUpRight size={16}/></a>
+              <NavLink to="/portfolio" className="nb-btn nb-btn-ghost">See our work</NavLink>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       <TrustSignals/>
 
       {/* ── Main grid ── */}
-      <section style={{padding:'80px 0 100px'}}>
-        <div className="nb-container">
+      <section className="nb-contact-section">
+        <div className="nb-orb nb-orb-blue"   style={{width:500,height:500,top:-100,right:-150,opacity:.06,pointerEvents:'none'}}/>
+        <div className="nb-orb nb-orb-purple" style={{width:400,height:400,bottom:-100,left:-100,opacity:.05,pointerEvents:'none'}}/>
+        <div className="nb-container" style={{position:'relative',zIndex:2}}>
           <div className="nb-contact-layout">
 
-            {/* Left sidebar */}
+            {/* ── Sidebar ── */}
             <Reveal>
               <aside className="nb-contact-aside">
                 <div className="nb-contact-aside-inner">
+                  <div className="nb-aside-top-bar"/>
                   <p className="nb-contact-aside-label">How we work</p>
-                  <h2 className="nb-contact-aside-h">We make<br/>it easy<br/>to start.</h2>
+                  <h2 className="nb-contact-aside-h">We make it<br/><span className="nb-grad">easy to start.</span></h2>
                   <p className="nb-contact-aside-body">No complicated onboarding. No lengthy proposals before we've even spoken. Just a conversation about what you're building.</p>
 
                   <div className="nb-contact-steps">
                     {[
-                      { n:'01', title:'Send a message', body:'Fill in the form. Takes 2 minutes.' },
-                      { n:'02', title:'We respond',     body:'Within 24 hours, usually same day.' },
-                      { n:'03', title:'Discovery call', body:'30 min to understand your project.' },
-                      { n:'04', title:'Proposal',       body:'Clear scope, timeline, and price.' },
+                      { n:'01', title:'Send a message', body:'Fill in the form. Takes 2 minutes.',      color:'#00f0ff' },
+                      { n:'02', title:'We respond',     body:'Within 24 hours, usually same day.',      color:'#7928ca' },
+                      { n:'03', title:'Discovery call', body:'30 min to understand your project.',      color:'#ff0080' },
+                      { n:'04', title:'Proposal',       body:'Clear scope, timeline, and price.',       color:'#ffb86c' },
                     ].map((s, i) => (
                       <div key={s.n} className="nb-contact-step">
-                        <div className="nb-contact-step-num">{s.n}</div>
-                        <div className="nb-contact-step-line" style={i < 3 ? {} : {opacity:0}}/>
+                        <div className="nb-contact-step-bubble" style={{background:`${s.color}18`,border:`1px solid ${s.color}40`,color:s.color}}>{s.n}</div>
+                        <div className="nb-contact-step-line" style={i < 3 ? {background:`linear-gradient(to bottom,${s.color}40,transparent)`} : {opacity:0}}/>
                         <div className="nb-contact-step-content">
                           <div className="nb-contact-step-title">{s.title}</div>
                           <div className="nb-contact-step-body">{s.body}</div>
@@ -282,61 +272,83 @@ export default function Contact() {
 
                   <div className="nb-contact-aside-details">
                     {[
-                      { Icon: Mail,  val: 'hello@nexbeelabs.com' },
-                      { Icon: Clock, val: 'Sun–Thu, 9AM–7PM BST' },
-                      { Icon: Globe, val: 'Dhaka, BD · Remote-first' },
+                      { Icon: Mail,  val: 'hello@nexbeelabs.com',   color:'#00f0ff' },
+                      { Icon: Clock, val: 'Sun–Thu, 9AM–7PM BST',   color:'#7928ca' },
+                      { Icon: Globe, val: 'Dhaka, BD · Remote-first', color:'#ff0080' },
                     ].map(d => (
-                      <div key={d.val} className="nb-contact-detail-row">
-                        <d.Icon size={14} style={{color:'#00f0ff',flexShrink:0}}/>
+                      <div key={d.val} className="nb-contact-detail-pill">
+                        <div className="nb-contact-detail-icon" style={{background:`${d.color}15`,color:d.color,border:`1px solid ${d.color}30`}}>
+                          <d.Icon size={13}/>
+                        </div>
                         <span>{d.val}</span>
                       </div>
                     ))}
                   </div>
 
                   <div className="nb-contact-socials">
-                    {[Linkedin, Instagram, Facebook, Dribbble].map((Icon, i) => (
-                      <a key={i} href="#" className="nb-soc"><Icon size={15}/></a>
+                    {[
+                      {Icon:Linkedin,  color:'#0077b5'},
+                      {Icon:Instagram, color:'#e1306c'},
+                      {Icon:Facebook,  color:'#1877f2'},
+                      {Icon:Dribbble,  color:'#ea4c89'},
+                    ].map(({Icon,color},i) => (
+                      <a key={i} href="#" className="nb-soc-pill" style={{'--sc':color}}>
+                        <Icon size={15}/>
+                      </a>
                     ))}
                   </div>
                 </div>
               </aside>
             </Reveal>
 
-            {/* Form panel */}
+            {/* ── Form panel ── */}
             <Reveal delay="0.15s">
               <div className="nb-contact-form-panel">
+                <div className="nb-form-top-bar"/>
                 {status === 'success' ? (
                   <div className="nb-form-success">
                     <div className="nb-form-success-ring">
-                      <CheckCircle size={32} style={{color:'#00f0ff'}}/>
+                      <CheckCircle size={36} style={{color:'#00f0ff'}}/>
                     </div>
                     <h3>Message received!</h3>
                     <p>We'll get back to you within 24 hours. Check your email — we might already be typing.</p>
-                    <button className="nb-btn nb-btn-ghost" onClick={() => { setStatus('idle'); setForm({ name:'',email:'',company:'',service:'',budget:'',message:'' }) }}>
+                    <button className="nb-btn nb-btn-ghost" onClick={() => { setStatus('idle'); setForm({ name:'',email:'',company:'',service:'',message:'' }) }}>
                       Send another
                     </button>
                   </div>
                 ) : (
                   <form onSubmit={submit} className="nb-premium-form">
                     <div className="nb-form-header">
-                      <h3>Tell us about your project</h3>
-                      <span className="nb-form-badge"><Sparkles size={11}/> Free consultation</span>
+                      <div>
+                        <h3 className="nb-form-title">Tell us about your project</h3>
+                        <p className="nb-form-subtitle">We read every message personally and reply within 24 hours.</p>
+                      </div>
+                      <span className="nb-form-badge"><Sparkles size={11}/> Free</span>
                     </div>
 
                     <div className="nb-pf-row">
                       <div className="nb-pf-group">
                         <label className="nb-pf-label">Your name *</label>
-                        <input className="nb-pf-input" name="name" value={form.name} onChange={handle} placeholder="Arif Rahman" required/>
+                        <div className="nb-pf-input-wrap">
+                          <User size={14} className="nb-pf-icon"/>
+                          <input className="nb-pf-input" name="name" value={form.name} onChange={handle} placeholder="Arif Rahman" required/>
+                        </div>
                       </div>
                       <div className="nb-pf-group">
                         <label className="nb-pf-label">Email address *</label>
-                        <input className="nb-pf-input" name="email" type="email" value={form.email} onChange={handle} placeholder="arif@company.com" required/>
+                        <div className="nb-pf-input-wrap">
+                          <Mail size={14} className="nb-pf-icon"/>
+                          <input className="nb-pf-input" name="email" type="email" value={form.email} onChange={handle} placeholder="arif@company.com" required/>
+                        </div>
                       </div>
                     </div>
 
                     <div className="nb-pf-group">
                       <label className="nb-pf-label">Company or project name</label>
-                      <input className="nb-pf-input" name="company" value={form.company} onChange={handle} placeholder="Acme Inc."/>
+                      <div className="nb-pf-input-wrap">
+                        <Building2 size={14} className="nb-pf-icon"/>
+                        <input className="nb-pf-input" name="company" value={form.company} onChange={handle} placeholder="Acme Inc."/>
+                      </div>
                     </div>
 
                     <div className="nb-pf-group">
@@ -346,20 +358,8 @@ export default function Contact() {
                           <button key={s} type="button"
                             className={`nb-pf-service-btn ${form.service === s ? 'nb-pf-service-btn-active' : ''}`}
                             onClick={() => setForm({...form, service: s})}>
+                            {form.service === s && <CheckCircle size={11} style={{flexShrink:0}}/>}
                             {s}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="nb-pf-group">
-                      <label className="nb-pf-label">Budget range</label>
-                      <div className="nb-pf-budget-row">
-                        {budgets.map(b => (
-                          <button key={b.v} type="button"
-                            className={`nb-pf-budget-btn ${form.budget === b.v ? 'nb-pf-budget-btn-active' : ''}`}
-                            onClick={() => setBudget(b.v)}>
-                            {b.label}
                           </button>
                         ))}
                       </div>
@@ -372,24 +372,22 @@ export default function Contact() {
                     </div>
 
                     {status === 'error' && (
-                      <p style={{color:'#ff0080',fontSize:'.85rem',padding:'10px 14px',background:'rgba(255,0,128,.08)',borderRadius:8,border:'1px solid rgba(255,0,128,.2)'}}>
-                        Something went wrong. Please email us directly at hello@nexbeelabs.com
+                      <p className="nb-form-error">
+                        Something went wrong. Email us directly at hello@nexbeelabs.com
                       </p>
                     )}
 
                     <button type="submit" className="nb-pf-submit" disabled={status === 'sending'}>
-                      {status === 'sending' ? (
-                        <><span className="nb-spinner"/> Sending…</>
-                      ) : (
-                        <><Send size={15}/> Send message</>
-                      )}
+                      <span className="nb-pf-submit-shine"/>
+                      {status === 'sending' ? <><span className="nb-spinner"/> Sending…</> : <><Send size={15}/> Send message</>}
                     </button>
 
-                    <p className="nb-pf-note">We read every message personally. No spam, no auto-replies.</p>
+                    <p className="nb-pf-note">No spam · No auto-replies · We respond personally</p>
                   </form>
                 )}
               </div>
             </Reveal>
+
           </div>
         </div>
       </section>
@@ -399,15 +397,11 @@ export default function Contact() {
         <div className="nb-orb nb-orb-purple" style={{width:500,height:500,top:'50%',left:-200,transform:'translateY(-50%)',opacity:.06,pointerEvents:'none'}}/>
         <div className="nb-container" style={{position:'relative',zIndex:2}}>
           <div className="nb-booking-grid">
-
-            {/* Left — info panel */}
             <Reveal>
               <div className="nb-booking-info">
                 <Badge>Free discovery call</Badge>
                 <h2 className="nb-booking-h">Let's talk about<br/><span className="nb-grad">your project</span></h2>
                 <p className="nb-booking-sub">No pitch, no pressure — just 30 minutes to understand what you're building and whether we're the right fit.</p>
-
-                {/* Host */}
                 <div className="nb-booking-host">
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80&crop=faces"
@@ -419,8 +413,6 @@ export default function Contact() {
                     <p className="nb-booking-host-role">Founder, NexbeeLabs</p>
                   </div>
                 </div>
-
-                {/* What we'll cover */}
                 <p className="nb-booking-covers-title">What we'll cover</p>
                 <div className="nb-booking-covers">
                   {[
@@ -435,8 +427,6 @@ export default function Contact() {
                     </div>
                   ))}
                 </div>
-
-                {/* Badges */}
                 <div className="nb-booking-badges">
                   {[
                     {label:'30 min', sub:'Duration'},
@@ -451,8 +441,6 @@ export default function Contact() {
                 </div>
               </div>
             </Reveal>
-
-            {/* Right — calendar */}
             <Reveal delay="0.15s">
               <div className="nb-calendly-wrap">
                 <div className="nb-calendly-header">
@@ -471,7 +459,6 @@ export default function Contact() {
                 />
               </div>
             </Reveal>
-
           </div>
         </div>
       </section>

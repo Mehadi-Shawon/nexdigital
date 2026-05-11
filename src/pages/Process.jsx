@@ -1,4 +1,5 @@
-import { Search, PenTool, Code2, Rocket, MessageSquare, FileText, Monitor, Package, CheckCircle, ArrowRight } from 'lucide-react'
+import { useState } from 'react'
+import { Search, PenTool, Code2, Rocket, MessageSquare, FileText, Monitor, Package, CheckCircle, ArrowRight, ChevronDown } from 'lucide-react'
 import Badge from '../components/Badge'
 import { NavLink } from 'react-router-dom'
 import { Reveal, StaggerReveal } from '../hooks/useInView'
@@ -56,8 +57,14 @@ function PageHero() {
       <div className="nb-orb nb-orb-purple" style={{width:400,height:400,bottom:0,left:-100,zIndex:2}}/>
       <div className="nb-container" style={{position:'relative',zIndex:10}}>
         <Reveal><Badge>How we work</Badge></Reveal>
-        <Reveal delay="0.1s"><h1 className="nb-page-h1">A process built for<br/><span className="nb-grad">no surprises</span></h1></Reveal>
+        <Reveal delay="0.1s"><h1 className="nb-page-h1" style={{whiteSpace:'nowrap'}}>A process built for <span className="nb-grad">no surprises</span></h1></Reveal>
         <Reveal delay="0.2s"><p className="nb-page-sub">Four clear phases. Defined deliverables at every step. You always know exactly where your project stands.</p></Reveal>
+        <Reveal delay="0.3s">
+          <div style={{display:'flex',gap:16,flexWrap:'wrap',marginTop:36}}>
+            <NavLink to="/contact"  className="nb-btn nb-btn-grad">Start a project <ArrowRight size={16}/></NavLink>
+            <NavLink to="/services" className="nb-btn nb-btn-ghost">Our services</NavLink>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -113,23 +120,49 @@ function ProcessDetail() {
 }
 
 function FAQ() {
+  const [open, setOpen] = useState(0)
   return (
-    <section style={{padding:'0 0 80px',background:'radial-gradient(ellipse at top,rgba(0,112,243,.05),transparent 60%)'}}>
-      <div className="nb-container nb-container-narrow">
-        <Reveal>
-          <div className="nb-section-head" style={{marginBottom:40}}>
-            <Badge>FAQ</Badge>
-            <h2 className="nb-h2">Common questions <span className="nb-grad">about our process</span></h2>
-          </div>
-        </Reveal>
-        <StaggerReveal className="nb-faq-list" step={0.07}>
-          {faqs.map(f => (
-            <div key={f.q} className="nb-faq-item">
-              <h3 className="nb-faq-q">{f.q}</h3>
-              <p className="nb-faq-a">{f.a}</p>
+    <section className="nb-pfaq-section">
+      <div className="nb-container">
+        <div className="nb-pfaq-layout">
+
+          {/* Left — sticky panel */}
+          <Reveal>
+            <div className="nb-pfaq-left">
+              <Badge>FAQ</Badge>
+              <h2 className="nb-h2" style={{marginTop:16}}>
+                Questions about <span className="nb-grad">our process</span>
+              </h2>
+              <p className="nb-pfaq-desc">
+                Everything you need to know before we start. Still unsure? Just ask — we respond within 24 hours.
+              </p>
+              <NavLink to="/contact" className="nb-btn nb-btn-grad" style={{marginTop:8,display:'inline-flex'}}>
+                Ask a question <ArrowRight size={16}/>
+              </NavLink>
             </div>
-          ))}
-        </StaggerReveal>
+          </Reveal>
+
+          {/* Right — accordion */}
+          <Reveal delay="0.12s">
+            <div className="nb-pfaq-list">
+              {faqs.map((f, i) => (
+                <div key={i} className={`nb-pfaq-item ${open === i ? 'nb-pfaq-item-open' : ''}`}>
+                  <button className="nb-pfaq-trigger" onClick={() => setOpen(open === i ? null : i)}>
+                    <span className="nb-pfaq-num" style={{color: open === i ? '#00f0ff' : undefined}}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="nb-pfaq-q">{f.q}</span>
+                    <ChevronDown size={18} className="nb-pfaq-chevron"/>
+                  </button>
+                  {open === i && (
+                    <p className="nb-pfaq-a">{f.a}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+        </div>
       </div>
     </section>
   )

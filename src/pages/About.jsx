@@ -19,6 +19,12 @@ function PageHero() {
         <Reveal><Badge>Our Story</Badge></Reveal>
         <Reveal delay="0.1s"><h1 className="nb-page-h1">Built different.<br/><span className="nb-grad">By design.</span></h1></Reveal>
         <Reveal delay="0.2s"><p className="nb-page-sub">Founded on a simple belief: great digital work comes from small, focused teams who care deeply — not sprawling agencies that spread themselves thin.</p></Reveal>
+        <Reveal delay="0.3s">
+          <div style={{display:'flex',gap:16,flexWrap:'wrap',marginTop:36}}>
+            <NavLink to="/contact"   className="nb-btn nb-btn-grad">Work with us <ArrowRight size={16}/></NavLink>
+            <NavLink to="/portfolio" className="nb-btn nb-btn-ghost">See our work</NavLink>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

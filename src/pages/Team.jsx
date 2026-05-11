@@ -1,4 +1,4 @@
-import { Linkedin, Globe, Code2, PenTool, TrendingUp, Megaphone, ArrowRight, Star, Zap, Coffee, Music, BookOpen, Target, MessageSquare, Layers } from 'lucide-react'
+import { Linkedin, Globe, Code2, PenTool, TrendingUp, Megaphone, ArrowRight, Star, Zap, Coffee, Music, BookOpen, Target, MessageSquare, Layers, Shield, HeartHandshake, Lightbulb, Clock } from 'lucide-react'
 import Badge from '../components/Badge'
 import { NavLink } from 'react-router-dom'
 import { Reveal, StaggerReveal } from '../hooks/useInView'
@@ -73,6 +73,109 @@ function PageHero() {
         </Reveal>
         <Reveal delay="0.2s">
           <p className="nb-page-sub">Six specialists who've chosen depth over breadth. You work directly with the people doing the work — always.</p>
+        </Reveal>
+        <Reveal delay="0.3s">
+          <div style={{display:'flex',gap:16,flexWrap:'wrap',marginTop:36}}>
+            <NavLink to="/contact" className="nb-btn nb-btn-grad">Work with us <ArrowRight size={16}/></NavLink>
+            <NavLink to="/about"   className="nb-btn nb-btn-ghost">Our story</NavLink>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+const tickerItems = [
+  'Craft over output',
+  'Radical honesty',
+  'No templates — ever',
+  'Skin in the game',
+  'Remote-first',
+  'Build to last',
+  'Direct access, always',
+  'Long-term thinking',
+  'Results, not vanity',
+  'Genuine investment',
+]
+
+function ValuesTicker() {
+  const doubled = [...tickerItems, ...tickerItems]
+  return (
+    <div className="nb-ticker-wrap">
+      <div className="nb-ticker-track">
+        {doubled.map((item, i) => (
+          <span key={i} className="nb-ticker-item">
+            {item}
+            <span className="nb-ticker-dot" aria-hidden="true"/>
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const wwuPoints = [
+  {
+    n: '01', Icon: Target,        color: '#00f0ff',
+    title: 'You talk directly to the people doing the work',
+    body:  'No account managers, no handoffs, no junior staff hiding behind a senior name. Every conversation is with the designer, developer, or strategist actually on your project.',
+    tag:   'Always direct',
+  },
+  {
+    n: '02', Icon: Shield,        color: '#7928ca',
+    title: 'We only take work we genuinely believe in',
+    body:  'We turn down projects that aren\'t a good fit — for us or for you. That selectiveness is exactly why every client we say yes to gets our full attention.',
+    tag:   '5 projects / quarter',
+  },
+  {
+    n: '03', Icon: HeartHandshake,color: '#ff0080',
+    title: 'Honest — even when it\'s uncomfortable',
+    body:  'If we think your idea won\'t work, we say so and bring a better one to the table. We\'d rather have an awkward conversation than ship something mediocre.',
+    tag:   'No sugarcoating',
+  },
+  {
+    n: '04', Icon: Lightbulb,     color: '#ffb86c',
+    title: 'Senior thinking on every single project',
+    body:  'There are no junior hires learning on your budget. Every person on our team had years of deep craft experience before joining NexbeeLabs.',
+    tag:   '6 yr avg experience',
+  },
+]
+
+function WhyWorkWithUs() {
+  return (
+    <section className="nb-wwu-section">
+      <div className="nb-container">
+        <Reveal>
+          <div className="nb-wwu-head" style={{textAlign:'center'}}>
+            <Badge>Why NexbeeLabs</Badge>
+            <h2 className="nb-h2" style={{marginTop:16}}>The standards we <span className="nb-grad">hold ourselves to.</span></h2>
+          </div>
+        </Reveal>
+
+        <div className="nb-wwu-list">
+          {wwuPoints.map((p, i) => (
+            <Reveal key={p.n} delay={`${i * 0.08}s`}>
+              <div className="nb-wwu-row" style={{'--wc': p.color}}>
+                <span className="nb-wwu-num">{p.n}</span>
+                <div className="nb-wwu-icon" style={{background:`${p.color}15`,border:`1px solid ${p.color}30`,color:p.color}}>
+                  <p.Icon size={22}/>
+                </div>
+                <div className="nb-wwu-content">
+                  <h3 className="nb-wwu-title">{p.title}</h3>
+                  <p className="nb-wwu-body">{p.body}</p>
+                </div>
+                <span className="nb-wwu-tag" style={{color:p.color,background:`${p.color}10`,border:`1px solid ${p.color}25`}}>{p.tag}</span>
+                <div className="nb-wwu-accent-line" style={{background:p.color}}/>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal>
+          <div style={{marginTop:48,display:'flex',gap:16,flexWrap:'wrap',justifyContent:'center'}}>
+            <NavLink to="/contact" className="nb-btn nb-btn-grad">Work with us <ArrowRight size={16}/></NavLink>
+            <NavLink to="/about"   className="nb-btn nb-btn-ghost">Our story</NavLink>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -178,6 +281,8 @@ export default function Team() {
   return (
     <>
       <PageHero/>
+      <ValuesTicker/>
+      <WhyWorkWithUs/>
       <TeamCards/>
       <Culture/>
       <Hiring/>

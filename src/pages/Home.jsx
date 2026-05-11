@@ -90,12 +90,12 @@ function Hero() {
 /* ─── Services ──────────────────────────────────────────────────────────── */
 function Services() {
   const services = [
-    { Icon: Globe,         title: 'Web Design & Development',  body: 'Conversion-focused websites built from scratch. No page builders, no shortcuts.',        tags: ['Next.js','TypeScript','Webflow'],       price: 'From $800',    accent: '#00f0ff' },
-    { Icon: PenTool,       title: 'Brand Identity & Strategy', body: 'Logo, colors, typography, tone. A brand system that holds together everywhere.',           tags: ['Logo','Guidelines','Positioning'],      price: 'From $500',    accent: '#7928ca' },
-    { Icon: Layers,        title: 'UI/UX Design',              body: 'Interfaces that make sense the first time. Research-informed, beautifully executed.',       tags: ['Figma','Prototyping','Research'],       price: 'From $1,200',  accent: '#ff0080' },
-    { Icon: TrendingUp,    title: 'SEO & Digital Marketing',   body: 'Get found. Get clicked. Get customers. Strategies that compound over time.',                tags: ['Technical SEO','Google Ads','Content'], price: 'From $600/mo', accent: '#00f0ff' },
-    { Icon: MessageCircle, title: 'Social Media Management',   body: 'Consistent, creative content that builds a real audience — not just follower counts.',      tags: ['Strategy','Reels','Reporting'],         price: 'From $450/mo', accent: '#7928ca' },
-    { Icon: ShoppingBag,   title: 'E-Commerce Solutions',      body: 'Online stores designed to sell. Shopify or WooCommerce, optimized for conversion.',         tags: ['Shopify','WooCommerce','CRO'],          price: 'From $1,500',  accent: '#ff0080' },
+    { Icon: Globe,         title: 'Web Design & Development',  body: 'Conversion-focused websites built from scratch. No page builders, no shortcuts.',        tags: ['Next.js','TypeScript','Webflow'],       accent: '#00f0ff' },
+    { Icon: PenTool,       title: 'Brand Identity & Strategy', body: 'Logo, colors, typography, tone. A brand system that holds together everywhere.',           tags: ['Logo','Guidelines','Positioning'],      accent: '#7928ca' },
+    { Icon: Layers,        title: 'UI/UX Design',              body: 'Interfaces that make sense the first time. Research-informed, beautifully executed.',       tags: ['Figma','Prototyping','Research'],       accent: '#ff0080' },
+    { Icon: TrendingUp,    title: 'SEO & Digital Marketing',   body: 'Get found. Get clicked. Get customers. Strategies that compound over time.',                tags: ['Technical SEO','Google Ads','Content'], accent: '#00f0ff' },
+    { Icon: MessageCircle, title: 'Social Media Management',   body: 'Consistent, creative content that builds a real audience — not just follower counts.',      tags: ['Strategy','Reels','Reporting'],         accent: '#7928ca' },
+    { Icon: ShoppingBag,   title: 'E-Commerce Solutions',      body: 'Online stores designed to sell. Shopify or WooCommerce, optimized for conversion.',         tags: ['Shopify','WooCommerce','CRO'],          accent: '#ff0080' },
   ]
   return (
     <section className="nb-section nb-section-dotgrid" id="services">
@@ -118,12 +118,125 @@ function Services() {
               <p className="nb-svc-body">{s.body}</p>
               <div className="nb-svc-tags">{s.tags.map(t => <span key={t} className="nb-svc-tag">{t}</span>)}</div>
               <div className="nb-svc-foot">
-                <span className="nb-svc-price">{s.price}</span>
                 <a href="#contact" className="nb-svc-link">Learn more <ChevronRight size={14} /></a>
               </div>
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Featured Projects ─────────────────────────────────────────────────── */
+const caseStudies = [
+  {
+    id: 'nexastore',
+    category: 'Web Design & Development',
+    client: 'NexaStore',
+    headline: 'Rebuilt for conversion from the ground up',
+    body: 'A complete e-commerce redesign that moved the needle fast — new architecture, faster load times, and a checkout flow that actually converts.',
+    metric: '+38%', metricLabel: 'Conversion rate',
+    tags: ['Next.js', 'Shopify', 'UI/UX', 'CRO'],
+    accent: '#00f0ff',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    featured: true,
+  },
+  {
+    id: 'orbit',
+    category: 'UI/UX Design',
+    client: 'Orbit',
+    headline: 'Turning complexity into clarity for a B2B SaaS',
+    metric: '60%', metricLabel: 'Faster onboarding',
+    tags: ['Figma', 'React', 'Data Viz'],
+    accent: '#7928ca',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'flare',
+    category: 'Brand Identity',
+    client: 'Flare Kitchen',
+    headline: 'A restaurant brand guests actually remember',
+    metric: '100%', metricLabel: 'Brand new identity',
+    tags: ['Branding', 'Print', 'Web'],
+    accent: '#ff0080',
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80',
+  },
+]
+
+function FeaturedProjects() {
+  const [main, ...rest] = caseStudies
+  return (
+    <section className="nb-section" id="portfolio">
+      <div className="nb-container">
+        <Reveal>
+          <div className="nb-section-head">
+            <Badge>Featured Work</Badge>
+            <h2 className="nb-h2">Projects that <span className="nb-grad">made a difference</span></h2>
+            <p className="nb-section-sub">Custom-built, delivered on time, and measured for real impact.</p>
+          </div>
+        </Reveal>
+
+        <div className="nb-cs-grid">
+          {/* Large card */}
+          <Reveal>
+            <div className="nb-cs-card nb-cs-featured">
+              <div className="nb-cs-img-wrap">
+                <img src={main.image} alt={main.client} className="nb-cs-img"/>
+                <div className="nb-cs-overlay" style={{background:'linear-gradient(to right,rgba(4,4,14,.96) 40%,rgba(4,4,14,.3) 100%)'}}/>
+              </div>
+              <div className="nb-cs-body-wrap nb-cs-body-featured">
+                <span className="nb-cs-cat" style={{color:main.accent}}>{main.category}</span>
+                <h3 className="nb-cs-client">{main.client}</h3>
+                <p className="nb-cs-headline">{main.headline}</p>
+                <p className="nb-cs-desc">{main.body}</p>
+                <div className="nb-cs-metric">
+                  <span className="nb-cs-metric-v" style={{color:main.accent}}>{main.metric}</span>
+                  <span className="nb-cs-metric-l">{main.metricLabel}</span>
+                </div>
+                <div className="nb-cs-tags">
+                  {main.tags.map(t => <span key={t} className="nb-cs-tag">{t}</span>)}
+                </div>
+              </div>
+              <div className="nb-cs-accent-line" style={{background:main.accent}}/>
+            </div>
+          </Reveal>
+
+          {/* Stack of smaller cards */}
+          <div className="nb-cs-stack">
+            {rest.map((p, i) => (
+              <Reveal key={p.id} delay={`${(i + 1) * 0.1}s`}>
+                <div className="nb-cs-card nb-cs-small">
+                  <div className="nb-cs-img-wrap">
+                    <img src={p.image} alt={p.client} className="nb-cs-img"/>
+                    <div className="nb-cs-overlay" style={{background:'linear-gradient(to top,rgba(4,4,14,.97) 35%,rgba(4,4,14,.25) 100%)'}}/>
+                  </div>
+                  <div className="nb-cs-body-wrap">
+                    <span className="nb-cs-cat" style={{color:p.accent}}>{p.category}</span>
+                    <h3 className="nb-cs-client nb-cs-client-sm">{p.client}</h3>
+                    <p className="nb-cs-headline nb-cs-headline-sm">{p.headline}</p>
+                    <div className="nb-cs-foot">
+                      <div className="nb-cs-metric">
+                        <span className="nb-cs-metric-v nb-cs-metric-sm" style={{color:p.accent}}>{p.metric}</span>
+                        <span className="nb-cs-metric-l">{p.metricLabel}</span>
+                      </div>
+                      <div className="nb-cs-tags">
+                        {p.tags.map(t => <span key={t} className="nb-cs-tag">{t}</span>)}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="nb-cs-accent-line" style={{background:p.accent}}/>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <Reveal>
+          <div style={{textAlign:'center',marginTop:48}}>
+            <a href="/portfolio" className="nb-btn nb-btn-ghost">View all projects <ArrowRight size={16}/></a>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -273,6 +386,108 @@ function Process() {
   )
 }
 
+/* ─── Tech Stack ────────────────────────────────────────────────────────── */
+const techRows = [
+  [
+    { name: 'Figma',         slug: 'figma',            hex: 'F24E1E' },
+    { name: 'Photoshop',     slug: 'adobephotoshop',   hex: '31A8FF' },
+    { name: 'Premiere Pro',  slug: 'adobepremierepro', hex: '9999FF' },
+    { name: 'Framer',        slug: 'framer',           hex: '0055FF' },
+    { name: 'Sketch',        slug: 'sketch',           hex: 'F7B500' },
+    { name: 'Webflow',       slug: 'webflow',          hex: '4353FF' },
+    { name: 'Shopify',       slug: 'shopify',          hex: '7AB55C' },
+    { name: 'WordPress',     slug: 'wordpress',        hex: '21759B' },
+    { name: 'Sanity',        slug: 'sanity',           hex: 'F36458' },
+  ],
+  [
+    { name: 'React',         slug: 'react',            hex: '61DAFB' },
+    { name: 'Next.js',       slug: 'nextdotjs',        hex: 'ffffff' },
+    { name: 'Node.js',       slug: 'nodedotjs',        hex: '5FA04E' },
+    { name: 'Laravel',       slug: 'laravel',          hex: 'FF2D20' },
+    { name: 'AWS',           slug: 'amazonaws',        hex: 'FF9900' },
+    { name: 'Flutter',       slug: 'flutter',          hex: '02569B' },
+    { name: 'AI Tools',      slug: 'openai',           hex: 'ffffff' },
+    { name: 'Docker',        slug: 'docker',           hex: '2496ED' },
+    { name: 'Kubernetes',    slug: 'kubernetes',       hex: '326CE5' },
+  ],
+  [
+    { name: 'TypeScript',    slug: 'typescript',       hex: '3178C6' },
+    { name: 'PostgreSQL',    slug: 'postgresql',       hex: '4169E1' },
+    { name: 'Tailwind CSS',  slug: 'tailwindcss',      hex: '06B6D4' },
+    { name: 'WooCommerce',   slug: 'woocommerce',      hex: '7F54B3' },
+    { name: 'Google Ads',    slug: 'googleads',        hex: '4285F4' },
+    { name: 'HubSpot',       slug: 'hubspot',          hex: 'FF7A59' },
+    { name: 'Analytics',     slug: 'googleanalytics',  hex: 'E37400' },
+    { name: 'Semrush',       slug: 'semrush',          hex: 'FF642D' },
+    { name: 'Notion',        slug: 'notion',           hex: 'ffffff' },
+  ],
+]
+
+const speeds = ['32s', '24s', '38s']
+
+function TechStack() {
+  return (
+    <section className="nb-ts-section">
+
+      <div className="nb-container" style={{position:'relative',zIndex:2}}>
+        <Reveal>
+          <div className="nb-section-head">
+            <Badge>Tech Stack</Badge>
+            <h2 className="nb-h2">Built with the tools <span className="nb-grad">your business needs</span></h2>
+            <p className="nb-section-sub">From design to deployment — we work across the full stack.</p>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="nb-ts-rows">
+        {techRows.map((row, i) => (
+          <div key={i} className="nb-ts-row-mask">
+            <div
+              className="nb-ts-track"
+              style={{
+                animationDuration: speeds[i],
+                animationDirection: i % 2 === 1 ? 'reverse' : 'normal',
+              }}
+            >
+              {[...row, ...row].map((t, j) => (
+                <div key={j} className="nb-ts-pill">
+                  <div className="nb-ts-logo-ring">
+                    <img
+                      src={`https://cdn.simpleicons.org/${t.slug}/${t.hex}`}
+                      alt={t.name}
+                      className="nb-ts-logo"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span className="nb-ts-name">{t.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="nb-container" style={{position:'relative',zIndex:2,marginTop:56}}>
+        <Reveal>
+          <div className="nb-ts-stats">
+            {[
+              { v:'20+',  l:'Technologies' },
+              { v:'4',    l:'Specialisations' },
+              { v:'120+', l:'Projects shipped' },
+              { v:'6yr',  l:'Combined expertise' },
+            ].map(s => (
+              <div key={s.l} className="nb-ts-stat">
+                <span className="nb-ts-stat-v nb-grad">{s.v}</span>
+                <span className="nb-ts-stat-l">{s.l}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 /* ─── Testimonials ──────────────────────────────────────────────────────── */
 function Testimonials() {
   const items = [
@@ -358,8 +573,10 @@ export default function Home() {
     <>
       <Hero />
       <Services />
+      <FeaturedProjects />
       <WhyUs />
       <Process />
+      <TechStack />
       <Testimonials />
       <ContactCTA />
     </>
