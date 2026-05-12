@@ -85,8 +85,18 @@ function PortfolioGrid() {
   const [active, setActive] = useState('All')
   const filtered = active === 'All' ? projects : projects.filter(p => p.category === active)
   return (
-    <section style={{padding:'60px 0 80px'}}>
-      <div className="nb-container">
+    <section style={{padding:'60px 0 80px', position:'relative', overflow:'hidden', background:'#07070d'}}>
+      {/* Dot grid with radial fade */}
+      <div style={{
+        position:'absolute', inset:0, zIndex:0, pointerEvents:'none',
+        backgroundImage:'radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px)',
+        backgroundSize:'28px 28px',
+        WebkitMaskImage:'radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 100%)',
+        maskImage:'radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 100%)',
+      }} />
+      <div style={{position:'absolute',width:600,height:600,top:-200,left:-180,borderRadius:'50%',background:'rgba(121,40,202,.18)',filter:'blur(150px)',zIndex:0,pointerEvents:'none'}} />
+      <div style={{position:'absolute',width:500,height:500,bottom:-160,right:-140,borderRadius:'50%',background:'rgba(0,112,243,.18)',filter:'blur(140px)',zIndex:0,pointerEvents:'none'}} />
+      <div className="nb-container" style={{position:'relative',zIndex:1}}>
         <Reveal>
           <div className="nb-filter-bar">
             {cats.map(c => (
@@ -129,7 +139,7 @@ function PortfolioGrid() {
 
 function CTA() {
   return (
-    <section style={{padding:'0 0 100px',background:'radial-gradient(ellipse at center,rgba(121,40,202,.06),transparent 70%)'}}>
+    <section style={{padding:'80px 0 100px',background:'radial-gradient(ellipse at center,rgba(121,40,202,.06),transparent 70%) #07070d'}}>
       <div className="nb-container nb-container-narrow" style={{textAlign:'center'}}>
         <Reveal>
           <Badge>Your project could be next</Badge>

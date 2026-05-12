@@ -57,7 +57,7 @@ function PageHero() {
       <div className="nb-orb nb-orb-purple" style={{width:400,height:400,bottom:0,left:-100,zIndex:2}}/>
       <div className="nb-container" style={{position:'relative',zIndex:10}}>
         <Reveal><Badge>How we work</Badge></Reveal>
-        <Reveal delay="0.1s"><h1 className="nb-page-h1" style={{whiteSpace:'nowrap'}}>A process built for <span className="nb-grad">no surprises</span></h1></Reveal>
+        <Reveal delay="0.1s"><h1 className="nb-page-h1">A process built for <span className="nb-grad">no surprises</span></h1></Reveal>
         <Reveal delay="0.2s"><p className="nb-page-sub">Four clear phases. Defined deliverables at every step. You always know exactly where your project stands.</p></Reveal>
         <Reveal delay="0.3s">
           <div style={{display:'flex',gap:16,flexWrap:'wrap',marginTop:36}}>

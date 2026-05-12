@@ -11,7 +11,7 @@ const links = [
   { label: 'Contact',   to: '/contact' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ onOpenContact }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -35,10 +35,10 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
-        <NavLink to="/contact" className="nb-nav-cta">
+        <button className="nb-nav-cta" onClick={onOpenContact}>
           <span>Let's talk</span>
           <ArrowUpRight size={14} className="nb-nav-cta-icon" />
-        </NavLink>
+        </button>
         <button className="nb-menu-btn" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -48,9 +48,9 @@ export default function Navbar() {
         {links.map((l) => (
           <NavLink key={l.to} to={l.to} className={({ isActive }) => `nb-mobile-link ${isActive ? 'nb-mobile-link-active':''}`} onClick={() => setOpen(false)}>{l.label}</NavLink>
         ))}
-        <NavLink to="/contact" className="nb-btn nb-btn-grad" style={{marginTop:12,justifyContent:'center'}} onClick={() => setOpen(false)}>
+        <button className="nb-btn nb-btn-grad" style={{marginTop:12,justifyContent:'center'}} onClick={() => { setOpen(false); onOpenContact() }}>
           Let's talk <ArrowUpRight size={14} />
-        </NavLink>
+        </button>
       </div>
     </header>
   )

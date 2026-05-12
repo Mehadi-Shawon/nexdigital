@@ -186,6 +186,12 @@ function TeamCards() {
   return (
     <section style={{padding:'60px 0 80px',position:'relative'}}>
       <div className="nb-container">
+        <Reveal>
+          <div className="nb-section-head" style={{marginBottom:48}}>
+            <Badge>Meet the team</Badge>
+            <h2 className="nb-h2 nb-nowrap-desk">The people behind <span className="nb-grad">every project</span></h2>
+          </div>
+        </Reveal>
         <StaggerReveal className="nb-team-profile-grid" step={0.08}>
           {team.map(m => (
             <div key={m.initials} className="nb-portrait-card">

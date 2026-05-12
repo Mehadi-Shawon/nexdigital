@@ -81,7 +81,7 @@ function PageHero() {
       <div className="nb-orb nb-orb-purple" style={{width:400,height:400,bottom:-100,right:-100,zIndex:2}}/>
       <div className="nb-container" style={{position:'relative',zIndex:10}}>
         <Badge>What We Do</Badge>
-        <h1 className="nb-page-h1" style={{whiteSpace:'nowrap'}}>Services built for <span className="nb-grad">real results</span></h1>
+        <h1 className="nb-page-h1">Services built for <span className="nb-grad">real results</span></h1>
         <p className="nb-page-sub">Everything your digital presence needs — from the first sketch to ongoing growth. Priced transparently, delivered properly.</p>
         <div style={{display:'flex',gap:16,flexWrap:'wrap',marginTop:36}}>
           <NavLink to="/contact" className="nb-btn nb-btn-grad">Start a project <ArrowRight size={16}/></NavLink>
@@ -94,7 +94,7 @@ function PageHero() {
 
 function ServiceList() {
   return (
-    <section className="nb-section">
+    <section className="nb-section" style={{background:'#07070d'}}>
       <div className="nb-container">
         <div className="nb-svc-full-list">
           {services.map((s, i) => (
@@ -167,8 +167,28 @@ function WhyItWorks() {
     },
   ]
   return (
-    <section style={{padding:'0 0 80px'}}>
-      <div className="nb-container">
+    <section style={{padding:'100px 0', position:'relative', overflow:'hidden', background:'#07070d'}}>
+      {/* Top accent line */}
+      <div style={{
+        position:'absolute', top:0, left:'6%', right:'6%', height:'1px', zIndex:2, pointerEvents:'none',
+        background:'linear-gradient(90deg,transparent,rgba(0,112,243,.65) 30%,rgba(121,40,202,.65) 70%,transparent)',
+      }} />
+
+      {/* Dot grid with radial fade */}
+      <div style={{
+        position:'absolute', inset:0, zIndex:0, pointerEvents:'none',
+        backgroundImage:'radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px)',
+        backgroundSize:'28px 28px',
+        WebkitMaskImage:'radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 100%)',
+        maskImage:'radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 100%)',
+      }} />
+
+      {/* Color orbs */}
+      <div style={{position:'absolute',width:700,height:700,top:-280,left:-220,borderRadius:'50%',background:'rgba(0,112,243,.2)',filter:'blur(160px)',zIndex:0,pointerEvents:'none'}} />
+      <div style={{position:'absolute',width:560,height:560,bottom:-200,right:-160,borderRadius:'50%',background:'rgba(121,40,202,.2)',filter:'blur(150px)',zIndex:0,pointerEvents:'none'}} />
+      <div style={{position:'absolute',width:300,height:300,top:'40%',left:'50%',transform:'translateX(-50%)',borderRadius:'50%',background:'rgba(0,240,255,.07)',filter:'blur(100px)',zIndex:0,pointerEvents:'none'}} />
+
+      <div className="nb-container" style={{position:'relative',zIndex:1}}>
         <Reveal>
           <div className="nb-section-head" style={{marginBottom:40}}>
             <Badge>Why it works</Badge>
@@ -200,7 +220,7 @@ function HowItWorks() {
     { Icon: LifeBuoy,    color: '#ffb86c', n: '04', title: 'Launch & support',    body: 'We handle launch and stay on for 30 days post-delivery to fix anything that needs fixing.' },
   ]
   return (
-    <section style={{padding:'0 0 80px',background:'radial-gradient(ellipse at center,rgba(0,112,243,.05),transparent 70%)',position:'relative'}}>
+    <section style={{padding:'80px 0',background:'radial-gradient(ellipse at center,rgba(0,112,243,.05),transparent 70%) #07070d',position:'relative'}}>
       <div className="nb-container">
         <Reveal>
           <div className="nb-section-head" style={{marginBottom:48}}>
@@ -211,12 +231,11 @@ function HowItWorks() {
         </Reveal>
         <StaggerReveal className="nb-svc-steps-grid" step={0.1}>
           {steps.map(s => (
-            <div key={s.n} className="nb-svc-step-card">
-              <div className="nb-svc-step-top">
-                <div className="nb-svc-step-icon" style={{background:`${s.color}15`,color:s.color,border:`1px solid ${s.color}30`}}>
-                  <s.Icon size={20}/>
-                </div>
-                <span className="nb-svc-step-num" style={{color:s.color}}>{s.n}</span>
+            <div key={s.n} className="nb-svc-step-card" style={{'--sc': s.color}}>
+              <div className="nb-svc-step-accent" style={{background: s.color}} />
+              <div className="nb-svc-step-watermark">{s.n}</div>
+              <div className="nb-svc-step-icon" style={{background:`${s.color}15`,color:s.color,border:`1px solid ${s.color}30`}}>
+                <s.Icon size={20}/>
               </div>
               <h3 className="nb-svc-step-title">{s.title}</h3>
               <p className="nb-svc-step-body">{s.body}</p>
@@ -291,7 +310,7 @@ function FAQ() {
 
 function CTA() {
   return (
-    <section className="nb-section">
+    <section className="nb-section" style={{background:'#07070d'}}>
       <div className="nb-container nb-container-narrow" style={{textAlign:'center'}}>
         <Badge>Not sure where to start?</Badge>
         <h2 className="nb-h2" style={{marginTop:16}}>Let's figure it out <span className="nb-grad">together</span></h2>

@@ -71,18 +71,19 @@ function Mission() {
 
 function Stats() {
   const stats = [
-    { v:'100%', l:'Client satisfaction', sub:'Every project delivered to brief' },
-    { v:'24hr',  l:'Avg response time',  sub:'We pick up fast' },
-    { v:'5',     l:'Projects/quarter',   sub:'So you always get our best' },
-    { v:'∞',     l:'Post-launch support',sub:'We don\'t disappear' },
+    { v:'100%', l:'Client satisfaction', sub:'Every project delivered to brief', color:'#00f0ff' },
+    { v:'24hr',  l:'Avg response time',  sub:'We pick up fast',                  color:'#7928ca' },
+    { v:'5',     l:'Projects/quarter',   sub:'So you always get our best',       color:'#ff0080' },
+    { v:'∞',     l:'Post-launch support',sub:'We don\'t disappear',              color:'#ffb86c' },
   ]
   return (
     <section style={{padding:'0 0 80px',background:'radial-gradient(ellipse at center,rgba(0,112,243,.06),transparent 70%)'}}>
       <div className="nb-container">
         <StaggerReveal className="nb-stats-grid" step={0.08}>
           {stats.map(s => (
-            <div key={s.v} className="nb-stat-card">
-              <div className="nb-stat-val nb-grad">{s.v}</div>
+            <div key={s.v} className="nb-stat-card" style={{'--sc': s.color}}>
+              <div className="nb-stat-accent" style={{background: s.color}} />
+              <div className="nb-stat-val" style={{color: s.color}}>{s.v}</div>
               <div className="nb-stat-label">{s.l}</div>
               <div className="nb-stat-sub">{s.sub}</div>
             </div>

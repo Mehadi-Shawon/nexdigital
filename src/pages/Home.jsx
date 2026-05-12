@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   ArrowRight, ChevronRight, Zap, Rocket, Globe, PenTool, Layers,
   TrendingUp, MessageCircle, ShoppingBag, Target, Shield, Users,
@@ -366,8 +367,8 @@ const techCategories = [
     label: 'Design', color: '#00f0ff', Icon: PenTool,
     tools: [
       { name: 'Figma',        slug: 'figma',           hex: 'F24E1E' },
-      { name: 'Photoshop',    slug: 'adobephotoshop',  hex: '31A8FF' },
-      { name: 'Premiere Pro', slug: 'adobepremierepro',hex: '9999FF' },
+      { name: 'Photoshop',    slug: 'photoshop',        hex: '31A8FF' },
+      { name: 'Premiere Pro', slug: 'premierepro',      hex: '9999FF' },
       { name: 'Framer',       slug: 'framer',          hex: '0055FF' },
       { name: 'Sketch',       slug: 'sketch',          hex: 'F7B500' },
       { name: 'Webflow',      slug: 'webflow',         hex: '4353FF' },
@@ -382,7 +383,7 @@ const techCategories = [
       { name: 'Laravel',      slug: 'laravel',         hex: 'FF2D20' },
       { name: 'AWS',          slug: 'amazonaws',       hex: 'FF9900' },
       { name: 'Flutter',      slug: 'flutter',         hex: '02569B' },
-      { name: 'AI Tools',     slug: 'openai',          hex: 'ffffff' },
+      { name: 'AI Tools',     slug: 'chatgpt',         hex: '74AA9C' },
       { name: 'Docker',       slug: 'docker',          hex: '2496ED' },
       { name: 'Kubernetes',   slug: 'kubernetes',      hex: '326CE5' },
     ],
@@ -411,6 +412,23 @@ const techCategories = [
   },
 ]
 
+function ToolIcon({ name, slug, hex }) {
+  const [err, setErr] = useState(false)
+  if (err) return (
+    <span style={{
+      width: 16, height: 16, borderRadius: 3, flexShrink: 0, display: 'inline-block',
+      background: `#${hex}`, opacity: .85,
+    }} />
+  )
+  return (
+    <img
+      src={`https://cdn.simpleicons.org/${slug}/${hex}`}
+      alt={name} loading="lazy" width="16" height="16"
+      onError={() => setErr(true)}
+    />
+  )
+}
+
 function TechStack() {
   return (
     <section className="nb-ts-section">
@@ -437,7 +455,7 @@ function TechStack() {
                 <div className="nb-ts-pills">
                   {cat.tools.map(t => (
                     <div key={t.name} className="nb-ts-pill">
-                      <img src={`https://cdn.simpleicons.org/${t.slug}/${t.hex}`} alt={t.name} loading="lazy" width="16" height="16"/>
+                      <ToolIcon name={t.name} slug={t.slug} hex={t.hex} />
                       <span>{t.name}</span>
                     </div>
                   ))}
